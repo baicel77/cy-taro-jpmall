@@ -1,0 +1,17 @@
+@import "@/assets/css/variables.scss";
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  line-height: 96px;
+  color: $hy-text-color-gray;
+  font-size: 30px;
+  padding: 0 30px;
+  border-bottom: 1px solid $hy-border-color;
+}
+
+.desc {
+  color: $hy-text-color-grey;
+}

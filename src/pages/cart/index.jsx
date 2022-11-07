@@ -1,11 +1,12 @@
 import { memo } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import EmptyCart from "./cpns/empty-cart";
 import styles from './index.module.scss'
 
 const Cart = memo(function() {
   return (
     <View className={styles['cart']}>
-      <Text>cart</Text>
+      <EmptyCart></EmptyCart>
     </View>
   )
 })

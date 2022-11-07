@@ -1,0 +1,36 @@
+@import "@/assets/css/variables.scss";
+
+.empty-cart {
+  height: 100%;
+  background-color: $hy-bg-color-pink-grey;
+}
+
+.title {
+  line-height: 88px;
+  text-align: center;
+  font-size: 36px;
+  color: $hy-text-color-gray;
+  background-color: white;
+}
+
+.empty-content {
+  text-align: center;
+  padding: 60px 0 0px 0;
+}
+.cart {
+  height: 280px;
+  width: 280px;
+}
+.tip {
+  font-size: 32px;
+  padding-bottom: 20px;
+}
+
+.recommend {
+  display: inline-block;
+  width: 276px;
+  line-height: 80px;
+  font-size: 30px;
+  color: $hy-color-primary;
+  border: 2px solid currentColor;
+}

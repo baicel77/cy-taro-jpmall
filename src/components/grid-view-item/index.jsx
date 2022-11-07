@@ -16,7 +16,7 @@ const GridViewItem = memo(function(props) {
         <Text className={styles['price']}>{goodInfo.coupon_tips}</Text>
         {
           goodInfo.logo_url &&
-          <Image className={styles['logo']} src={goodInfo.logo_url}></Image>
+          <Image className={styles['logo']} src={goodInfo.logo_url} mode="widthFix"></Image>
         }
       </View>
 

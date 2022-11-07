@@ -1,12 +1,13 @@
 import { memo } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import CategorySearch from "./cpns/category-search";
 import styles from './index.module.scss'
 
 
 const Category = memo(function() {
   return (
     <View className={styles['category']}>
-      <Text>category</Text>
+      <CategorySearch></CategorySearch>
     </View>
   )
 })

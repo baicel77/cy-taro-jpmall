@@ -1,0 +1,41 @@
+@import "@/assets/css/variables.scss";
+
+.order-info {
+  font-size: 33px;
+  color: $hy-text-color-gray;
+}
+
+.title-bar {
+  height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 30px;
+  border-bottom: 1px solid $hy-border-color;
+}
+
+.subname {
+  color: $hy-text-color-grey;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0px;
+  font-size: 24px;
+  color: $hy-text-color-shallow-gray;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-icon {
+  width: 56px;
+}

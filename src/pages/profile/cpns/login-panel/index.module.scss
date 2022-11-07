@@ -1,0 +1,38 @@
+@import "@/assets/css/variables.scss";
+
+.login-panel {
+  padding: 0 100px;
+  color: white;
+  font-size: 40px;
+  background-image: url("../../../../assets/images/profile/user_center_bg.png");
+}
+
+.title {
+  line-height: 88px;
+  text-align: center;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  flex: 1;
+  line-height: 200px;
+  text-align: center;
+}
+
+.line {
+  display: inline-block;
+  width: 2px;
+  height: 40px;
+  background-color: white;
+}
+
+.login {
+  flex: 1;
+  line-height: 200px;
+  text-align: center;
+}

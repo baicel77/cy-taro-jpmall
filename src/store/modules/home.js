@@ -67,7 +67,7 @@ const homeSlice = createSlice({
     [getGoodsThunkAction.fulfilled](state, action) {
       const { payload } = action
       if(payload.goods && payload.goods.length){
-        // todo ....
+        // 直接修改 page 和 list
         const {type, page, goods } = payload
         state.goodsList[tabs[type]].list = [...state.goodsList[tabs[type]].list, ...goods]
         state.goodsList[tabs[type]].page = page

@@ -1,0 +1,42 @@
+@import '@/assets/css/variables.scss';
+
+.home-search {
+  height: 88px;
+  @include normalFlex();
+
+  .search-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    height: 58px;
+    margin: 18px 0 18px 18px;
+    border-radius: 6px;
+    background-color: $hy-bg-color-grey; // 浅灰
+
+
+    .left-search-img {
+      width: 44px;
+      height: 44px;
+      // 微调
+      padding: 0 8px 0 6px;
+    }
+
+    .name {
+      color: $hy-text-color; // 主题色
+      font-size: 24px;
+      font-weight: 500;
+      // 微调
+      padding-bottom: 2px;
+    }
+
+    .sub-name {
+      color: $hy-text-color-grey; // 浅浅灰
+    }
+  }
+
+  .right-search-img {
+    width: 88px;
+    height: 88px;
+  }
+}

@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import { View } from '@tarojs/components'
 import { useSelector, useDispatch } from 'react-redux'
-import { useReachBottom } from '@tarojs/taro'
+import { useReachBottom, useLoad } from '@tarojs/taro'
 import { getHomeInfoThunkAction, getRecommendThunkAction, getGoodsThunkAction, setCurrentTab , tabs } from '@/store/modules/home'
 import TabControl from '@/components/tab-control'
 import GridView from '@/components/grid-view'
@@ -17,33 +17,30 @@ import styles from './index.module.scss'
 
 const Home = memo(function() {
 
-  const banners = useSelector((state) => {
-    return state.home.banners
+  // 从 redux store 中读取数据
+  const  { banners, populars, recommend , currentTab, goodsList } = useSelector((state) => {
+    return {
+      banners: state.home.banners,
+      populars: state.home.populars,
+      recommend: state.home.recommend,
+      currentTab: state.home.currentTab,
+      goodsList: state.home.goodsList,
+    }
   })
-  const populars = useSelector((state) => {
-    return state.home.populars
-  })
-  const recommend = useSelector((state) => {
-    return state.home.recommend
-  })
-  const goodsList = useSelector((state) => {
-    return state.home.goodsList
-  })
-  const  currentTab = useSelector((state) => {
-    return state.home.currentTab
-  })
+
   const dispath = useDispatch()
 
-  console.log('home-banners', banners);
-
-  useEffect(() => {
+  // 页面加载时开发发起网络请求
+  useLoad(() => {
     dispath(getHomeInfoThunkAction())
     dispath(getRecommendThunkAction())
-
     // type:0  page: 1
     dispath(getGoodsThunkAction({type: 0, page: 1}))
     dispath(getGoodsThunkAction({type: 1, page: 1}))
+  })
 
+  useEffect(() => {
+    console.log('useEffect');
   }, [])
 
   useReachBottom(() => {

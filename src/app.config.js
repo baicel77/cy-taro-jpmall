@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/cart/index',
     'pages/profile/index',
     'pages/detail/index',
+    'pages/webview/index',
   ],
   window: {
     backgroundTextStyle: 'light',

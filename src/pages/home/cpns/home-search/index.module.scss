@@ -3,6 +3,7 @@
 .home-search {
   height: 88px;
   @include normalFlex();
+  justify-content: flex-start;
 
   .search-panel {
     flex: 1;

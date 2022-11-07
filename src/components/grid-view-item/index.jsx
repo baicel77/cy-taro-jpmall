@@ -3,9 +3,13 @@ import { View, Image,  Text } from '@tarojs/components'
 import styles from './index.module.scss'
 
 const GridViewItem = memo(function(props) {
-  const { goodInfo } = props
+  const { goodInfo, onItemClick } = props
+
+  function handleItemClick() {
+    onItemClick && onItemClick(goodInfo)
+  }
   return (
-    <View className={styles['grid-view-item']}>
+    <View className={styles['grid-view-item']} onClick={handleItemClick}>
       <Image
         className={styles['item-img']}
         mode="widthFix"
@@ -13,7 +17,10 @@ const GridViewItem = memo(function(props) {
       ></Image>
 
       <View className={styles['item-price']}>
-        <Text className={styles['price']}>{goodInfo.coupon_tips}</Text>
+        {
+          goodInfo.coupon_tips &&
+          <Text className={styles['price']}>{goodInfo.coupon_tips}</Text>
+        }
         {
           goodInfo.logo_url &&
           <Image className={styles['logo']} src={goodInfo.logo_url} mode="widthFix"></Image>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getHomeInfo, getRecommend, getGoods } from '@/service/home'
 
+// 异步的action
 export const getHomeInfoThunkAction = createAsyncThunk('home/info', async () => {
   const res = await getHomeInfo()
   return res.data
@@ -19,6 +20,8 @@ export const getGoodsThunkAction = createAsyncThunk('home/goods', async (payload
     type
   }
 })
+
+// 选项卡字符串
 export const tabs = ["specific", "single"]; // 0 1
 
 function getDefaultGoodsList() {
@@ -35,7 +38,7 @@ const homeSlice = createSlice({
   initialState: {
     banners: [],
     populars: [],
-    recommend: null,
+    recommend: null, // 这个默认值为null，使用时需要判断
     currentTab: tabs[0], // specific  single
     goodsList: getDefaultGoodsList()
     // goodsList: {
@@ -66,16 +69,16 @@ const homeSlice = createSlice({
     },
     [getGoodsThunkAction.fulfilled](state, action) {
       const { payload } = action
+      // 判空在操作
       if(payload.goods && payload.goods.length){
-        // 直接修改 page 和 list
         const {type, page, goods } = payload
+        // 直接修改 page 和 list
         state.goodsList[tabs[type]].list = [...state.goodsList[tabs[type]].list, ...goods]
         state.goodsList[tabs[type]].page = page
       }
-
     }
   }
 })
-
+// 同步的action
 export const { setCurrentTab } = homeSlice.actions
 export default homeSlice.reducer

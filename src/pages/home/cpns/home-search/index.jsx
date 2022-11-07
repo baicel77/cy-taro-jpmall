@@ -8,14 +8,14 @@ const HomeSearch = memo(function() {
   return (
     <View className={styles['home-search']}>
       <View className={styles['search-panel']}>
-          <Image className={styles['left-search-img']} src={LeftSearchImg}></Image>
+          <Image className={styles['left-search-img']} src={LeftSearchImg} mode="widthFix"></Image>
           <View className={styles['name']}>
             商品
             <Text className={styles['sub-name']}>搜索</Text>
           </View>
       </View>
 
-      <Image className={styles['right-search-img']} src={RightSearchImg}></Image>
+      <Image className={styles['right-search-img']} src={RightSearchImg} mode="widthFix"></Image>
     </View>
   )
 })

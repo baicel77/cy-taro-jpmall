@@ -1,10 +1,17 @@
 import { memo } from 'react'
 import { Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'proptypes'
+import Taro from "@tarojs/taro";
 import styles from './index.module.scss'
 
 const HomeBanner = memo(function(props) {
   const { banners } = props
+  function handleItemClick(url) {
+    if (!url) return;
+    Taro.navigateTo({
+      url: "/pages/webview/index?link=" + url
+    });
+  }
   return (
     <Swiper
       className={styles['home-banner']}
@@ -19,7 +26,7 @@ const HomeBanner = memo(function(props) {
           // key.id  item.pic widthFix
           return (
             <SwiperItem key={item.id}>
-              <Image className={styles['banner-img']} src={item.pic} mode="widthFix"></Image>
+              <Image className={styles['banner-img']} src={item.pic} mode="widthFix" onClick={()=>handleItemClick(item.jump_url)}></Image>
             </SwiperItem>
           )
         })

@@ -21,3 +21,10 @@ $hy-padding-lr: 24px;
   justify-content: $justify;
   flex-direction: $direction;
 }
+
+
+@mixin textEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

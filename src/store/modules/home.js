@@ -36,31 +36,23 @@ const homeSlice = createSlice({
     banners: [],
     populars: [],
     recommend: null,
+    currentTab: tabs[0], // specific  single
     goodsList: getDefaultGoodsList()
     // goodsList: {
-    //   "精选专场": {
+    //   "specific": { // 精选专场
     //     page: 0,
     //     list: []
     //   },
-    //   "精选单品": {
+    //   "single": {  // 精选单品
     //     page: 0,
     //     list: []
     //   }
     // }
   },
   reducers: {
-    // getHomeInfo(state, action){
-    //   const { payload } = action
-    //   state.banners = payload
-    // },
-    // getRecommend(state, action){
-    //   const { payload } = action
-    //   state.recommend = payload
-    // },
-    // getGoods(state, action){
-    //   const { payload } = action
-    //   state.goodsList = payload
-    // },
+    setCurrentTab(state, { payload }) {
+      state.currentTab = payload
+    }
   },
   extraReducers: {
     [getHomeInfoThunkAction.fulfilled](state, action) {
@@ -85,5 +77,5 @@ const homeSlice = createSlice({
   }
 })
 
-// export const { getHomeInfo, getRecommend, getGoods } = homeSlice.actions
+export const { setCurrentTab } = homeSlice.actions
 export default homeSlice.reducer

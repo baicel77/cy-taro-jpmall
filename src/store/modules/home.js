@@ -10,10 +10,14 @@ export const getRecommendThunkAction = createAsyncThunk('home/recommend', async 
   const res = await getRecommend()
   return res.data
 })
-export const getGoodsThunkAction = createAsyncThunk('home/goods', async (payload) => {
-  console.log("payload=>", payload);
+// eslint-disable-next-line no-unused-vars
+export const getGoodsThunkAction = createAsyncThunk('home/goods', async (payload, { dispatch, getState }) => {
+  // console.log("payload=>", payload);
+  // console.log(dispatch);
+  // console.log(getState().home);  // 拿到当前home模块的state
   const { type, page} = payload
   const res = await getGoods(type, page)
+  // 返回具体信息
   return {
     goods: res.data.goods,
     page,
@@ -57,17 +61,20 @@ const homeSlice = createSlice({
       state.currentTab = payload
     }
   },
-  extraReducers: {
-    [getHomeInfoThunkAction.fulfilled](state, action) {
+  extraReducers: (builder) => {
+    builder
+    .addCase(getHomeInfoThunkAction.fulfilled, (state, action)=>{
       const { payload } = action
       state.banners = payload.adsInfo.slide_ads.config.slide || []
-    },
-    [getRecommendThunkAction.fulfilled](state, action) {
+    })
+
+    .addCase(getRecommendThunkAction.fulfilled, (state, action) => {
       const { payload } = action
       state.populars = payload.populars || []
-      state.recommend = payload.recommend || {}
-    },
-    [getGoodsThunkAction.fulfilled](state, action) {
+      state.recommend = payload.recommend || null
+    })
+
+    .addCase(getGoodsThunkAction.fulfilled, (state, action) => {
       const { payload } = action
       // 判空在操作
       if(payload.goods && payload.goods.length){
@@ -76,8 +83,31 @@ const homeSlice = createSlice({
         state.goodsList[tabs[type]].list = [...state.goodsList[tabs[type]].list, ...goods]
         state.goodsList[tabs[type]].page = page
       }
-    }
-  }
+    })
+  },
+
+  // 下面的写法将在 RTK 2.0以后过期
+  // extraReducers: {
+  //   [getHomeInfoThunkAction.fulfilled](state, action) {
+  //     const { payload } = action
+  //     state.banners = payload.adsInfo.slide_ads.config.slide || []
+  //   },
+  //   [getRecommendThunkAction.fulfilled](state, action) {
+  //     const { payload } = action
+  //     state.populars = payload.populars || []
+  //     state.recommend = payload.recommend || {}
+  //   },
+  //   [getGoodsThunkAction.fulfilled](state, action) {
+  //     const { payload } = action
+  //     // 判空在操作
+  //     if(payload.goods && payload.goods.length){
+  //       const {type, page, goods } = payload
+  //       // 直接修改 page 和 list
+  //       state.goodsList[tabs[type]].list = [...state.goodsList[tabs[type]].list, ...goods]
+  //       state.goodsList[tabs[type]].page = page
+  //     }
+  //   }
+  // }
 })
 // 同步的action
 export const { setCurrentTab } = homeSlice.actions
